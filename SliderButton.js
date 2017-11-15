@@ -3,13 +3,13 @@
 var React = require("react-native");
 var SliderButtonStyle = require("./SliderButtonStyle.js");
 var SliderButtonStyleConstant = require("./SliderButtonStyleConstant.js");
-	
+var PropTypes = require("prop-types")
+
 var
 {
 	View,
 	Text,
 	Image,
-	SliderIOS,
 	Animated
 } = React;
 
@@ -24,7 +24,7 @@ Object.freeze(Constants);
 
 var SliderButton = React.createClass(
 {
-	
+
 	getInitialState: function()
 	{
 		return {
@@ -34,21 +34,21 @@ var SliderButton = React.createClass(
 			containerHeight: 0,
 		};
 	},
-	propTypes: Object.create(SliderIOS.propTypes,
+	  propTypes: Object.create({},
 	{
 		text:
 		{
 			enumerable: true,
 			configurable: false,
 			writable: false,
-			value: React.PropTypes.string
+			value: PropTypes.string
 		},
 		stylesheet:
 		{
 			enumerable: true,
 			configurable: false,
 			writable: false,
-			value: React.PropTypes.object
+			value: PropTypes.object
 		}
 	}),
 	animationDuration: Constants.ANIMATION_DURATION,
@@ -134,7 +134,7 @@ var SliderButton = React.createClass(
 				<View style={SliderButtonStyleConstant.container} ref={"vContainer"}>
 					{animatedTextContainer}
 
-					<SliderIOS key={this.state.timestamp}
+					<Slider key={this.state.timestamp}
 						style={[styles.slider, styles.sliderBorder, SliderButtonStyleConstant.slider]}
 						onSlidingComplete={(newValue) => this.onSliderValueChanged(newValue)}
 						minimumValue={0} maximumValue={100} value={actualValue}
